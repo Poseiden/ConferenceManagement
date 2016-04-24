@@ -34,4 +34,9 @@ public class Track implements Serializable{
     public Track(List<Session> sessionList) {
         this.sessionList = sessionList;
     }
+
+    public Track(String trackName, List<Session> sessionList) {
+        this.trackName = trackName;
+        this.sessionList = sessionList;
+    }
 }

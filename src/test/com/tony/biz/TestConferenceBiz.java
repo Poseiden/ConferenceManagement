@@ -1,5 +1,6 @@
 package com.tony.biz;
 
+import com.tony.biz.impl.ConferenceBizServiceImpl;
 import com.tony.entity.Conference;
 import com.tony.entity.Session;
 import com.tony.entity.Talk;
@@ -12,14 +13,14 @@ import java.util.List;
  * Created by ton on 16-4-24.
  */
 public class TestConferenceBiz {
-    private ConferenceBiz conferenceBiz = null;
+    private ConferenceBizService conferenceBiz = null;
 
     /**
      * 测试装载TalkList
      * @throws Exception
      */
     public void testLoadTalkList()throws Exception{
-         conferenceBiz = new ConferenceBiz();
+        conferenceBiz = new ConferenceBizServiceImpl();
         List<Talk> talkList = conferenceBiz.loadTalkList();
         for(Talk talk : talkList){
             System.out.println(talk.toString());
@@ -31,7 +32,7 @@ public class TestConferenceBiz {
      * 测试为每个Track组装session
      */
     public void testGetSessionPerTrack(){
-       conferenceBiz = new ConferenceBiz();
+       conferenceBiz = new ConferenceBizServiceImpl();
         List<Session> session = conferenceBiz.getSessionPerTrack();
 
         for(Session _session : session){

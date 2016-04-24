@@ -1,28 +1,26 @@
-package com.tony.biz;
+package com.tony.biz.impl;
 
+import com.tony.biz.ConferenceBizService;
 import com.tony.entity.Session;
 import com.tony.entity.SessionType;
 import com.tony.entity.Talk;
 import com.tony.entity.Track;
 import com.tony.util.Tool;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- * Created by ton on 16-4-23.
+ * Created by ton on 16-4-24.
  */
-public class ConferenceBiz {
+public class ConferenceBizServiceImpl implements ConferenceBizService{
     private final String  talkConfig ="src/com/tony/config/talks";
 
-    /**
-     * 根据配置文件装载所有talks
-     * @return
-     * @throws IOException
-     */
     public List<Talk> loadTalkList () throws Exception{
         List<Talk> talkList = new ArrayList<Talk>();
 
@@ -45,16 +43,14 @@ public class ConferenceBiz {
         return talkList;
     }
 
-    /**
-     * 每个Track的sessionList
-     * @return
-     */
     public List<Session> getSessionPerTrack(){
         List<Session> sessionList = new ArrayList<Session>();
 
         //morningSession
-        Calendar start= new GregorianCalendar();
-        Calendar end = new GregorianCalendar();
+        Calendar start= Calendar.getInstance();
+        Calendar end = Calendar.getInstance ();
+        start.clear();
+        end.clear();
         start.set(Calendar.HOUR_OF_DAY, 9);
         end.set(Calendar.HOUR_OF_DAY,12);
 
@@ -62,8 +58,10 @@ public class ConferenceBiz {
         Session morningSession = new Session(sessionType,null,start.getTime());
 
         //afternoonSession
-        start = new GregorianCalendar();
-        end = new GregorianCalendar();
+        start =Calendar.getInstance();
+        end = Calendar.getInstance();
+        start.clear();
+        end.clear();
         start.set(Calendar.HOUR_OF_DAY,13);
         end.set(Calendar.HOUR_OF_DAY,17);
 
@@ -76,16 +74,10 @@ public class ConferenceBiz {
         return sessionList;
     }
 
-    /**
-     * 将sessionList和talkList传入，schedule之，并组装成track，返回
-     * @param talkList 装载好的话题
-     * @param sessionList
-     * @return
-     */
-    public Track getTrackAfterTaskScheduled(List<Talk> talkList,List<Session> sessionList){
+    public List<Track> getTrackAfterTaskScheduled(List<Talk> talkList,List<Session> sessionList){
+        
         return null;
     }
 
 
 }
-

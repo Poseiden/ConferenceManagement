@@ -1,16 +1,21 @@
 package com.tony.entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 
 /**
  * Created by ton on 16-4-23.
  */
-public class Talk implements Serializable {
+public class Talk implements Serializable ,Comparable<Talk>{
 
     private static final long serialVersionUID = -3690186227705969683L;
     private String titleName;
     private int last;//持续时间
-    private String start;   //起始时间
+    private Date start;   //起始时间
     private boolean isScheduled = false;//是否已经被排过
 
     public String getTitleName() {
@@ -29,10 +34,6 @@ public class Talk implements Serializable {
         this.last = last;
     }
 
-    public String getStart() {
-        return start;
-    }
-
     public boolean isScheduled() {
         return isScheduled;
     }
@@ -41,7 +42,11 @@ public class Talk implements Serializable {
         this.isScheduled = isScheduled;
     }
 
-    public void setStart(String start) {
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
         this.start = start;
     }
 
@@ -54,15 +59,43 @@ public class Talk implements Serializable {
         this.last = last;
     }
 
-    public Talk(String titleName, int last,String start,boolean isScheduled) {
+    public Talk(String titleName, int last,Date start,boolean isScheduled) {
         this.titleName = titleName;
         this.last = last;
         this.start = start;
         this.isScheduled = isScheduled;
     }
 
+    /**********Duplicate*************/
+
     @Override
     public String toString() {
-        return String.format("titleName:%s;last:%s",this.getTitleName(),this.getLast());
+        DateFormat format = new SimpleDateFormat("hh:mm");
+        return String.format("start:%s\t titleName:%s\t last:%s",format.format(this.getStart()),this.getTitleName(),this.getLast());
+    }
+//
+//    @Override
+//    public int compare(Talk o1, Talk o2) {
+//        int difference = o1.getLast() - o2.getLast();
+//        if(difference > 0){
+//            return 1;
+//        }else if(difference < 0){
+//            return -1;
+//        }else{
+//            return 0;
+//        }
+//    }
+
+    @Override
+    public int compareTo(Talk o) {
+        int difference = this.getLast() - o.getLast();
+
+        if(difference > 0){
+            return 1;
+        }else if(difference < 0){
+            return -1;
+        }else{
+            return 0;
+        }
     }
 }

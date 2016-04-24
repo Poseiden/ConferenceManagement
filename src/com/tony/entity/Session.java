@@ -66,4 +66,25 @@ public class Session implements Serializable {
                 this.getTalkList() == null ? null:this.getTalkList().size(), calendar.get(Calendar.HOUR_OF_DAY)
                 );
     }
+
+    /*************method****************/
+    /**
+     * 获得此session中还有多少分钟可以安排
+     * @return 获得分钟数
+     */
+    public int getRemainingTimeOfMinutes(){
+        int minutes  = (int)(this.getSessionType().getEnd().getTime() - this.getRightNow().getTime())/1000/60;
+        return minutes;
+    }
+
+    /**
+     * 算出并设置在安排完一个talk后session的的当前时间指向
+     * @param talkLastMinutes 一个talk的持续分钟数
+     */
+    public void rightNowAfterScheduled(int talkLastMinutes){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.getRightNow());
+        calendar.add(Calendar.MINUTE,talkLastMinutes);
+        this.setRightNow(calendar.getTime());
+    }
 }
