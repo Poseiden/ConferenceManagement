@@ -9,6 +9,7 @@ import java.util.Date;
 
 /**
  * Created by ton on 16-4-23.
+ * 演讲，交流
  */
 public class Talk implements Serializable ,Comparable<Talk>{
 
@@ -17,6 +18,7 @@ public class Talk implements Serializable ,Comparable<Talk>{
     private int last;//持续时间
     private Date start;   //起始时间
     private boolean isScheduled = false;//是否已经被排过
+    private String fullContent; //配置文件中的原始字符串
 
     public String getTitleName() {
         return titleName;
@@ -50,13 +52,22 @@ public class Talk implements Serializable ,Comparable<Talk>{
         this.start = start;
     }
 
+    public String getFullContent() {
+        return fullContent;
+    }
+
+    public void setFullContent(String fullContent) {
+        this.fullContent = fullContent;
+    }
+
     /**************Constructor************/
     public Talk() {
     }
 
-    public Talk(String titleName, int last) {
+    public Talk(String titleName, int last,String fullContent) {
         this.titleName = titleName;
         this.last = last;
+        this.fullContent = fullContent;
     }
 
     public Talk(String titleName, int last,Date start,boolean isScheduled) {
@@ -71,20 +82,8 @@ public class Talk implements Serializable ,Comparable<Talk>{
     @Override
     public String toString() {
         DateFormat format = new SimpleDateFormat("hh:mm");
-        return String.format("start:%s\t titleName:%s\t last:%s",format.format(this.getStart()),this.getTitleName(),this.getLast());
+        return String.format("%s\t %s",format.format(this.getStart()),this.getFullContent());
     }
-//
-//    @Override
-//    public int compare(Talk o1, Talk o2) {
-//        int difference = o1.getLast() - o2.getLast();
-//        if(difference > 0){
-//            return 1;
-//        }else if(difference < 0){
-//            return -1;
-//        }else{
-//            return 0;
-//        }
-//    }
 
     @Override
     public int compareTo(Talk o) {

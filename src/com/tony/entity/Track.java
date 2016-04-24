@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by ton on 16-4-23.
+ * 逻辑关系上处于Conference和Session之间的实体
  */
 public class Track implements Serializable{
     private static final long serialVersionUID = 1314768182424545465L;
@@ -38,5 +39,11 @@ public class Track implements Serializable{
     public Track(String trackName, List<Session> sessionList) {
         this.trackName = trackName;
         this.sessionList = sessionList;
+    }
+
+    /***************Duplicate**************/
+    @Override
+    public String toString() {
+        return this.getTrackName();
     }
 }

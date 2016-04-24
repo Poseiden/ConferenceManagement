@@ -11,7 +11,8 @@ public class SessionType implements Serializable
     private static final long serialVersionUID = 8169551722485706551L;
     private String sessionTypeName;
     private Date start; //此session起始时间
-    private Date end;//此session结束时间
+    private Date end; //此session的结束时间
+    private boolean scheduleable;   //可否被schedule，因为后期把lunch和networking也看做sessiontype的一种，所以对于这两个来说就是不可schedule的
 
     public String getSessionTypeName() {
         return sessionTypeName;
@@ -37,14 +38,23 @@ public class SessionType implements Serializable
         this.end = end;
     }
 
+    public boolean isScheduleable() {
+        return scheduleable;
+    }
+
+    public void setScheduleable(boolean scheduleable) {
+        this.scheduleable = scheduleable;
+    }
+
     /****************Constructor*********/
     public SessionType() {
 
     }
 
-    public SessionType(String sessionTypeName,Date start, Date end) {
+    public SessionType(String sessionTypeName,Date start,Date end,boolean scheduleable) {
         this.sessionTypeName = sessionTypeName;
         this.start = start;
         this.end = end;
+        this.scheduleable = scheduleable;
     }
 }
