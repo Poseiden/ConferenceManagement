@@ -54,7 +54,7 @@ public class Session implements Serializable {
     /************Duplicate Method*************/
     @Override
     public String toString() {
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        DateFormat dateFormat = new SimpleDateFormat("hh:mma");
         return String.format("%s\t %s",dateFormat.format(this.getRightNow()),this.getSessionType().getSessionTypeName());
     }
 
