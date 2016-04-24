@@ -23,12 +23,13 @@ public class TalkBizServiceImpl implements TalkBizService {
             File talks = new File(talkConfigPath);
             BufferedReader reader = new BufferedReader(new FileReader(talks));
             String str = null;
+            Talk talk = null;
             do{
                 str = reader.readLine();
                 if(str == null || str.trim().length() == 0) {
                     break;
                 }
-                Talk talk = Tool.createTalk(str);
+                talk = Tool.createTalk(str);
                 talkList.add(talk);
             }while(true);
 

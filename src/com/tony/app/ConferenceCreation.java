@@ -23,7 +23,7 @@ public class ConferenceCreation {
         TrackBizService trackBizService = new TrackBizServiceImpl();
 
         List<Talk> talkList = talkBizService.loadTalkList(configPath);//装载所有talk
-        List<Track> trackList = trackBizService.getTrackAfterTaskScheduled(talkList);  //schedule之后
+        List<Track> trackList = trackBizService.getTrackAfterTaskScheduled(talkList);  //schedule之后的trackList
 
         Conference conference = new Conference(trackList); //整个Conference的schedule结束
 

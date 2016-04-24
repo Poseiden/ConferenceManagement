@@ -81,6 +81,9 @@ public class Talk implements Serializable ,Comparable<Talk>{
 
     @Override
     public String toString() {
+        if(this.getStart() == null){
+            return this.getFullContent();
+        }
         DateFormat format = new SimpleDateFormat("hh:mm");
         return String.format("%s\t %s",format.format(this.getStart()),this.getFullContent());
     }
