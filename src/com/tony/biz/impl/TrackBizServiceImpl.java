@@ -1,5 +1,6 @@
 package com.tony.biz.impl;
 
+import com.tony.biz.SessionService;
 import com.tony.biz.TrackBizService;
 import com.tony.entity.Session;
 import com.tony.entity.Talk;
@@ -12,8 +13,10 @@ import java.util.*;
  * Created by ton on 16-4-24.
  */
 public class TrackBizServiceImpl implements TrackBizService {
+    private SessionService sessionService = null;
 
     public List<Track> getTrackAfterTaskScheduled(List<Talk> talkList )throws Exception{
+        sessionService = new SessionServiceImpl();
         List<Session> sessionList = null;
         List<Track> trackList = new ArrayList<Track>();
 
@@ -22,7 +25,7 @@ public class TrackBizServiceImpl implements TrackBizService {
 
         while(!ifAllTalkListScheduled(talkList)){ //只要有talk还没有被schedule，那就继续循环
             _index ++;
-           sessionList = Tool.getSessionPerTrack(); //初始化sessionList
+            sessionList = sessionService.createSessionList(); //初始化sessionList
             track = new Track(String.format("Track %s:",String.valueOf(_index)),sessionList);
             track = Tool.getTrackAfterTalkScheduled(talkList,track); //核心schedule方法
 

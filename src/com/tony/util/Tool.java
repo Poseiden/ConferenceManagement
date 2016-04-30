@@ -2,12 +2,10 @@ package com.tony.util;
 
 
 import com.tony.entity.Session;
-import com.tony.entity.SessionType;
 import com.tony.entity.Talk;
 import com.tony.entity.Track;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,27 +26,28 @@ public class Tool {
      */
     public static Talk createTalk(String str) throws Exception{
         String titleName = str.substring(0, str.lastIndexOf(" "));  //拆分titlename
-        String last = str.substring(str.lastIndexOf(" ") + 1);   //将时间那个字段拆出来
-        int last_int = 0;
 
-        Pattern p = Pattern.compile(regxNum);
-        Matcher m = p.matcher(last);
+        String durationStr = str.substring(str.lastIndexOf(" ") + 1);   //将时间那个字段拆出来
+        int duration_int = 0;
 
-        if (m.find()) {//先判断是否含有数字，否则就是“lightning”
-            p = Pattern.compile(regxLetter);
-            m = p.matcher(last);
-            last_int = Integer.parseInt(m.replaceAll("").trim());   //将min过滤掉，然后提取出其中的数字
+        Pattern pattern = Pattern.compile(regxNum);
+        Matcher matcher = pattern.matcher(durationStr);
+
+        if (matcher.find()) {//先判断是否含有数字，否则就是“lightning”
+            pattern = Pattern.compile(regxLetter);
+            matcher = pattern.matcher(durationStr);
+            duration_int = Integer.parseInt(matcher.replaceAll("").trim());   //将min过滤掉，然后提取出其中的数字
         } else {
-            p = Pattern.compile(regxLightning);
-            m = p.matcher(last);
-            if (m.find()) {
-                last_int = 5; //将last置为lightning
+            pattern = Pattern.compile(regxLightning);
+            matcher = pattern.matcher(durationStr);
+            if (matcher.find()) {
+                duration_int = 5; //将last置为lightning
             }else{
                 throw new Exception("Invalid Duration");
             }
         }
 
-        Talk talk = new Talk(titleName,last_int,str);
+        Talk talk = new Talk(titleName,duration_int,str);
         return talk;
     }
 
@@ -96,62 +95,5 @@ public class Tool {
 
         track.setSessionList(sessions);
         return track;
-    }
-
-    /**
-     * 装载每个Track所需要的Session
-     * @return   list of session
-     */
-    public static List<Session> getSessionPerTrack(){
-        List<Session> sessionList = new ArrayList<Session>();
-
-        //morningSession
-        Calendar start= Calendar.getInstance();
-        Calendar end = Calendar.getInstance();
-        start.clear();
-        end.clear();
-        start.set(Calendar.HOUR_OF_DAY, 9);
-        end.set(Calendar.HOUR_OF_DAY,12);
-
-        SessionType sessionType = new SessionType("morningSession",start.getTime(),end.getTime(),true);
-        Session morningSession = new Session(sessionType,null,start.getTime());
-
-        //afternoonSession
-        start =Calendar.getInstance();
-        end = Calendar.getInstance();
-        start.clear();
-        end.clear();
-        start.set(Calendar.HOUR_OF_DAY,13);
-        end.set(Calendar.HOUR_OF_DAY,17);
-
-        sessionType = new SessionType("afternoonSession",start.getTime(),end.getTime(),true);
-        Session afternoonSession = new Session(sessionType,null,start.getTime());
-
-        //lunch session
-        start  = Calendar.getInstance();
-        end = Calendar.getInstance();
-        start.clear();
-        end.clear();
-        start.set(Calendar.HOUR_OF_DAY,12);
-
-        sessionType = new SessionType("lunch",start.getTime(),null,false);
-        Session lunch = new Session(sessionType,null,start.getTime());
-
-        //network event
-        start = Calendar.getInstance();
-        end = Calendar.getInstance();
-        start.clear();
-        end.clear();
-        start.set(Calendar.HOUR_OF_DAY,17);
-
-        sessionType = new SessionType("Networking Event",start.getTime(),null,false);
-        Session networking = new Session(sessionType,null,start.getTime());
-
-        sessionList.add(morningSession);
-        sessionList.add(lunch);
-        sessionList.add(afternoonSession);
-        sessionList.add(networking);
-
-        return sessionList;
     }
 }
