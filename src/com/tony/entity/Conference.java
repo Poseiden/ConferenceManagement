@@ -1,13 +1,12 @@
 package com.tony.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by ton on 16-4-23.
  * 活动
  */
-public class Conference implements Serializable{
+public class Conference{
     private static final long serialVersionUID = 4418732194481868879L;
     private List<Track> trackList;
 

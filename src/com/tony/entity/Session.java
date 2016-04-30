@@ -1,6 +1,5 @@
 package com.tony.entity;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,7 +10,7 @@ import java.util.List;
  * Created by ton on 16-4-23.
  * session
  */
-public class Session implements Serializable {
+public class Session {
     private static final long serialVersionUID = -6360145985701970153L;
     private SessionType sessionType;//session的类型
     private List<Talk> talkList;

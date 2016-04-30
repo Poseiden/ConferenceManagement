@@ -1,13 +1,12 @@
 package com.tony.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by ton on 16-4-23.
  * 逻辑关系上处于Conference和Session之间的实体
  */
-public class Track implements Serializable{
+public class Track{
     private static final long serialVersionUID = 1314768182424545465L;
     private String trackName;
     private List<Session> sessionList;

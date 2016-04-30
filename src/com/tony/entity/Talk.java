@@ -1,17 +1,14 @@
 package com.tony.entity;
 
-import java.io.Serializable;
 import java.text.DateFormat;
-import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 
 /**
  * Created by ton on 16-4-23.
  * 演讲，交流
  */
-public class Talk implements Serializable ,Comparable<Talk>{
+public class Talk implements Comparable<Talk>{
 
     private static final long serialVersionUID = -3690186227705969683L;
     private String titleName;

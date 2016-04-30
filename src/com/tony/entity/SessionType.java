@@ -1,13 +1,12 @@
 package com.tony.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by ton on 16-4-23.
  */
-public class SessionType implements Serializable
-{
+public class SessionType{
+
     private static final long serialVersionUID = 8169551722485706551L;
     private String sessionTypeName;
     private Date start; //此session起始时间
