@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
  * Created by ton on 16-4-23.
  */
 public class Tool {
-    private static final String regxLetter = "[a-zA-Z]+";
     private static final String regxLightning = "lightning";
     private static final String regxNum = "\\d{2}";
 
@@ -45,7 +44,7 @@ public class Tool {
             }
         }
 
-        Talk talk = new Talk(titleName,duration_int,str);
+        Talk talk = new Talk(titleName,duration_int,str,false);
         return talk;
     }
 

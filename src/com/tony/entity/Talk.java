@@ -60,16 +60,10 @@ public class Talk implements Comparable<Talk>{
     public Talk() {
     }
 
-    public Talk(String titleName, int last,String fullContent) {
+    public Talk(String titleName, int last,String fullContent,boolean isScheduled) {
         this.titleName = titleName;
         this.last = last;
         this.fullContent = fullContent;
-    }
-
-    public Talk(String titleName, int last,Date start,boolean isScheduled) {
-        this.titleName = titleName;
-        this.last = last;
-        this.start = start;
         this.isScheduled = isScheduled;
     }
 

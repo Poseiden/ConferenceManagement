@@ -46,6 +46,11 @@ public class Session {
         this.rightNow = rightNow;
     }
 
+    public Session(SessionType sessionType , Date rightNow){
+        this.sessionType = sessionType;
+        this.rightNow = rightNow;
+    }
+
     public Session() {
     }
 
