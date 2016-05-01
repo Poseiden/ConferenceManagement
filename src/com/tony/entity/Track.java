@@ -7,7 +7,6 @@ import java.util.List;
  * 逻辑关系上处于Conference和Session之间的实体
  */
 public class Track{
-    private static final long serialVersionUID = 1314768182424545465L;
     private String trackName;
     private List<Session> sessionList;
 

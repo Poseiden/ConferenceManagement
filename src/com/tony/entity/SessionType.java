@@ -7,7 +7,6 @@ import java.util.Date;
  */
 public class SessionType{
 
-    private static final long serialVersionUID = 8169551722485706551L;
     private String sessionTypeName;
     private Date start; //此session起始时间
     private Date end; //此session的结束时间

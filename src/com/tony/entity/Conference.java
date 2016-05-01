@@ -7,7 +7,6 @@ import java.util.List;
  * 活动
  */
 public class Conference{
-    private static final long serialVersionUID = 4418732194481868879L;
     private List<Track> trackList;
 
     public List<Track> getTrackList() {

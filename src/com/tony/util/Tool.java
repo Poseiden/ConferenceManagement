@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class Tool {
     private static final String regxLetter = "[a-zA-Z]+";
     private static final String regxLightning = "lightning";
-    private static final String regxNum = "[0-9]";
+    private static final String regxNum = "\\d{2}";
 
     /**
      * 根据传入的字符串来拆分并且创建talk
@@ -34,9 +34,7 @@ public class Tool {
         Matcher matcher = pattern.matcher(durationStr);
 
         if (matcher.find()) {//先判断是否含有数字，否则就是“lightning”
-            pattern = Pattern.compile(regxLetter);
-            matcher = pattern.matcher(durationStr);
-            duration_int = Integer.parseInt(matcher.replaceAll("").trim());   //将min过滤掉，然后提取出其中的数字
+            duration_int = Integer.parseInt(matcher.group());
         } else {
             pattern = Pattern.compile(regxLightning);
             matcher = pattern.matcher(durationStr);

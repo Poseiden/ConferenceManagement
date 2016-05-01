@@ -11,7 +11,6 @@ import java.util.List;
  * session
  */
 public class Session {
-    private static final long serialVersionUID = -6360145985701970153L;
     private SessionType sessionType;//session的类型
     private List<Talk> talkList;
     private Date rightNow;//目前排到的时间

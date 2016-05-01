@@ -10,7 +10,6 @@ import java.util.Date;
  */
 public class Talk implements Comparable<Talk>{
 
-    private static final long serialVersionUID = -3690186227705969683L;
     private String titleName;
     private int last;//持续时间
     private Date start;   //起始时间
