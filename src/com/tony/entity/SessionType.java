@@ -46,13 +46,18 @@ public class SessionType{
 
     /****************Constructor*********/
     public SessionType() {
-
     }
 
     public SessionType(String sessionTypeName,Date start,Date end,boolean scheduleable) {
         this.sessionTypeName = sessionTypeName;
         this.start = start;
         this.end = end;
+        this.scheduleable = scheduleable;
+    }
+
+    public SessionType(String sessionTypeName,Date start,boolean scheduleable) {
+        this.sessionTypeName = sessionTypeName;
+        this.start = start;
         this.scheduleable = scheduleable;
     }
 }

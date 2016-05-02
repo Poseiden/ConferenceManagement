@@ -37,7 +37,6 @@ public class TalkBizServiceImpl implements TalkBizService {
             throw new Exception(e);
         }
 
-//        Collections.sort(talkList);
         Collections.sort(talkList, Collections.reverseOrder());//反向排序，把时间长的放前面
         return talkList;
     }

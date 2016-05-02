@@ -13,5 +13,5 @@ public interface SessionService {
      * 创建每个Track所需要的SessionList
      * @return A list of Session
      */
-    List<Session> createSessionList();
+    List<Session> createSessionListPerTrack();
 }

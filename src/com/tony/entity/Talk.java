@@ -68,7 +68,6 @@ public class Talk implements Comparable<Talk>{
     }
 
     /**********Duplicate*************/
-
     @Override
     public String toString() {
         if(this.getStart() == null){
@@ -81,7 +80,6 @@ public class Talk implements Comparable<Talk>{
     @Override
     public int compareTo(Talk o) {
         int difference = this.getLast() - o.getLast();
-
         if(difference > 0){
             return 1;
         }else if(difference < 0){

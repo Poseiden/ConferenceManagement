@@ -35,20 +35,16 @@ public class Session {
         return rightNow;
     }
 
-    public void setRightNow(Date rightNow) {
-        this.rightNow = rightNow;
-    }
-
     /************Constructor*************/
-    public Session(SessionType sessionType, List<Talk> talkList, Date rightNow) {
+    public Session(SessionType sessionType, List<Talk> talkList) {
         this.sessionType = sessionType;
         this.talkList = talkList;
-        this.rightNow = rightNow;
+        this.rightNow = sessionType.getStart();
     }
 
-    public Session(SessionType sessionType , Date rightNow){
+    public Session(SessionType sessionType){
         this.sessionType = sessionType;
-        this.rightNow = rightNow;
+        this.rightNow = sessionType.getStart();
     }
 
     public Session() {
@@ -70,9 +66,7 @@ public class Session {
         if(this.getSessionType().isScheduleable()) {
             int minutes = (int) (this.getSessionType().getEnd().getTime() - this.getRightNow().getTime()) / 1000 / 60;
             return minutes;
-        }else{
-            throw new Exception("No Avaliable for schedule");
-        }
+        }else{ throw new Exception("No Avaliable for schedule"); }
     }
 
     /**
@@ -83,6 +77,6 @@ public class Session {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.getRightNow());
         calendar.add(Calendar.MINUTE,talkLastMinutes);
-        this.setRightNow(calendar.getTime());
+        this.rightNow = calendar.getTime();
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 public class SessionServiceImpl implements SessionService{
 
     @Override
-    public List<Session> createSessionList() {
+    public List<Session> createSessionListPerTrack() {
         List<Session> sessionList = new ArrayList<Session>();
 
         //morningSession
@@ -26,7 +26,7 @@ public class SessionServiceImpl implements SessionService{
         end.set(Calendar.HOUR_OF_DAY,12);
 
         SessionType sessionType = new SessionType("morningSession",start.getTime(),end.getTime(),true);
-        Session morningSession = new Session(sessionType,null,start.getTime());
+        Session morningSession = new Session(sessionType);
 
         //afternoonSession
         start =Calendar.getInstance();
@@ -37,7 +37,7 @@ public class SessionServiceImpl implements SessionService{
         end.set(Calendar.HOUR_OF_DAY,17);
 
         sessionType = new SessionType("afternoonSession",start.getTime(),end.getTime(),true);
-        Session afternoonSession = new Session(sessionType,null,start.getTime());
+        Session afternoonSession = new Session(sessionType);
 
         //lunch session
         start  = Calendar.getInstance();
@@ -45,9 +45,10 @@ public class SessionServiceImpl implements SessionService{
         start.clear();
         end.clear();
         start.set(Calendar.HOUR_OF_DAY,12);
+        end.set(Calendar.HOUR_OF_DAY,13);
 
-        sessionType = new SessionType("lunch",start.getTime(),null,false);
-        Session lunch = new Session(sessionType,null,start.getTime());
+        sessionType = new SessionType("lunch",start.getTime(),end.getTime(),false);
+        Session lunch = new Session(sessionType);
 
         //network event
         start = Calendar.getInstance();
@@ -56,8 +57,8 @@ public class SessionServiceImpl implements SessionService{
         end.clear();
         start.set(Calendar.HOUR_OF_DAY,17);
 
-        sessionType = new SessionType("Networking Event",start.getTime(),null,false);
-        Session networking = new Session(sessionType,null,start.getTime());
+        sessionType = new SessionType("Networking Event",start.getTime(),false);
+        Session networking = new Session(sessionType);
 
         sessionList.add(morningSession);
         sessionList.add(lunch);
