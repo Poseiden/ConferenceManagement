@@ -20,25 +20,23 @@ public class Tool {
      * @return 组装的talk
      */
     public static Talk createTalk(String str) throws Exception{
-        String titleName = str.substring(0, str.lastIndexOf(" "));  //拆分titlename
-
-        String durationStr = str.substring(str.lastIndexOf(" ") + 1);   //将时间那个字段拆出来
         int duration_int = 0;
 
         Pattern pattern = Pattern.compile(regxNum);
-        Matcher matcher = pattern.matcher(durationStr);
+        Matcher matcher = pattern.matcher(str);
 
         if (matcher.find()) {//先判断是否含有数字，否则就是“lightning”
             duration_int = Integer.parseInt(matcher.group());
         } else {
             pattern = Pattern.compile(regxLightning);
-            matcher = pattern.matcher(durationStr);
+            matcher = pattern.matcher(str);
             if (matcher.find()) {
                 duration_int = 5; //将last置为lightning
             }else{
                 throw new Exception("Invalid Duration");
             }
         }
+        String titleName = str.substring(0, str.lastIndexOf(" "));  //拆分titlename
 
         Talk talk = new Talk(titleName,duration_int,str,false);
         return talk;
